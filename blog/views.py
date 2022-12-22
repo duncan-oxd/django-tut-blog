@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 
@@ -7,5 +7,5 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 def single_post(request, post_id):
-    post = Post.objects.get(id=post_id)
+    post = get_object_or_404(Post, id=post_id)
     return render(request, 'blog/single_post.html', {'post': post})
